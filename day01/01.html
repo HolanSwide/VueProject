@@ -2,10 +2,46 @@
 <html>
 <head>
 <meta charset="utf-8">
+<script src="../js/vue.js"></script>
 <title>Vue Day01</title>
 </head>
 <body>
-    <h1>我的第一个标题</h1>
-    <p>我的第一个段落。</p>
+<div id="root">
+    {{name}} <br>
+    {{user.uid}}
+    <hr>
+    <h1>指令语法</h1>
+    <a v-bind:href="url">click here...</a><br>
+    <a :href="url">or here...</a>
+    <hr>
+    <h1>插值语法</h1>
+    <div id="val">
+        <h3> Date:{{Date.now()}}</h3>
+    </div>
+</div>
+
+<script type="text/javascript" >
+    Vue.config.productionTip = false // 阻止警告提示
+    let valVue = new Vue({
+        el:'#val',
+        data: {
+            name:'Date'
+        }
+    });
+    let rootVue = new Vue({
+        el:'#root',
+        data: {
+            name:'HelloW0r1d',
+            user:{
+                uid:'00000000',
+                username:'AyanamiRei',  
+                password:'0'
+            },
+            url:'https://www.baidu.com'
+        }
+        
+    })
+</script>  
+
 </body>
 </html>
