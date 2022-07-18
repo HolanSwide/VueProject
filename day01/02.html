@@ -10,7 +10,11 @@
 <div id="test">
     <h3>{{name}}</h3>
     单向数据绑定： <input v-bind:value="name" type="text"> <br>
-    双向数据绑定： <input v-model:value="name" type="text">
+    双向数据绑定： <input v-model:value="name" type="text"><br>
+    v-model 只能用在表单数据上，绑定value属性
+    <h3>简写</h3>
+    单向数据绑定： <input :value="name" type="text"> <br>
+    双向数据绑定： <input v-model="name" type="text"><br>
 </div>
 
 <script type="text/javascript" >

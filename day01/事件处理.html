@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="../js/vue.js"></script>
+<title>Vue 数据代理</title>
+</head>
+<body>
+
+<div id="test">
+    Name: <input v-model="name" type="text"><br>
+    <button v-on:click="show">click here</button>
+</div>
+
+<script type="text/javascript" >
+    Vue.config.productionTip = false // 阻止警告提示
+    let testVue = new Vue({
+        el:'#test',
+        data:{
+            name:'Holan'
+        },
+        methods:{
+            show() {
+                alert("Hello World " + this.name)
+            }
+        }
+    })
+   
+</script>  
+
+</body>
+</html>

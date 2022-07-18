@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="../js/vue.js"></script>
+<title>Vue 数据代理</title>
+</head>
+<body>
+
+<div id="test">
+
+</div>
+
+<script type="text/javascript" >
+    Vue.config.productionTip = false // 阻止警告提示
+    let testVue = new Vue({
+        el:'#test',
+        data:{
+            name:'Holan'
+        }
+    })
+    let obj = {x:123}
+    let prObj = {y:321}
+    Object.defineProperties(prObj,'x',{
+        get(){
+            return obj.x
+            alert(obj + ' ' + prObj)
+        },
+        set(value) {
+            obj.x = value;
+            alert(obj+' '+prObj)
+        }
+    }) 
+</script>  
+
+</body>
+</html>
