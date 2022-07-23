@@ -3,26 +3,73 @@
 <head>
 <meta charset="utf-8">
 <script src="../js/vue.js"></script>
-<title>Vue 数据代理</title>
+<title>Vue 事件处理</title>
+<style>
+    *{
+        margin-top: 20px;
+        background-color: bisque;
+    }
+</style>
 </head>
 <body>
 
+<h1>Vue事件处理</h1>
+
+<hr>
+
 <div id="test">
     Name: <input v-model="name" type="text"><br>
-    <button v-on:click="show">click here</button>
+    <button v-on:click="show">click here</button><br>
+    <hr>
+    <h3>简写方式为@</h3>
+    Value: <input v-model="value" type="text"> <br>
+    <button @click="showEvent($event,value)">click here</button><br>
+    <hr>
+    <h3>事件修饰符</h3>
+    <a href="https://cn.bing.com" @click.prevent="show">click to a website...</a>
+</div>
+
+
+<div id="keyboard"  @keyup.enter="notice">
+    <h3>键盘事件
+    <input type="text"  placeholder="enter">
+    <p>
+        注意：shift alt ctrl meta四个键比较特殊 <br>
+        1. @keyup 只有同时按下其他键并松开才能触发 <br>
+        2. @keydown 正常触发 <br>
+    </p>
+    <input type="text" placeholder="shift+keyup" @keyup.shift="notice"><br>
+    <input type="text" placeholder="shift+keydown" @keydown.shift="notice"><br>
 </div>
 
 <script type="text/javascript" >
     Vue.config.productionTip = false // 阻止警告提示
+
+    let keyVue = new Vue({
+        el:'#keyboard',
+        data:{
+            value:'enter'
+        },
+        methods:{
+            notice(e){
+                alert("Key! " + e.target.value)
+            }
+        }
+    })
+
     let testVue = new Vue({
         el:'#test',
         data:{
-            name:'Holan'
+            name:'Holan',
+            value:'Swide'
         },
-        methods:{
-            show() {
+        methods:{ 
+            show() { 
                 alert("Hello World " + this.name)
-            }   
+            },
+            showEvent(event,value) {
+                alert(event+" : "+value)
+            }
         }
     })
    

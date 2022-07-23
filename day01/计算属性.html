@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="../js/vue.js"></script>
+<title>Vue 计算属性</title>
+
+<style>
+    *{
+        margin-top: 20px;
+        background-color: bisque;
+    }
+</style>
+
+</head>
+<body>
+
+<h1>Vue计算属性</h1>
+
+<hr>
+
+<div>
+    <p>计算属性：将Vue的原有属性计算出来的新属性</p>
+    <p>写法：computed:</p>
+    <br>
+    <span>
+        let testVue = new Vue({
+            el:'#test',
+            data:{
+                name:'',
+                hello:'Hello '
+            },
+            computed:{
+    
+            },
+            methods:{
+    
+            }
+        })
+    </span>
+</div>
+
+<div id="test">
+    姓名：<input type="text" placeholder="name here..." v-model="name"> <br>
+    姓名：<span>{{slogen}}</span>
+</div>
+
+<script type="text/javascript" >
+    Vue.config.productionTip = false // 阻止警告提示
+    let testVue = new Vue({
+        el:'#test',
+        data:{
+            name:'',
+            hello:'Hello '
+        },
+        computed:{
+            slogen:{
+                get(){
+                    console.log(this.hello+this.name)
+                    return this.hello+this.name
+                },
+                set(v){
+                    console.log('set '+v)
+                }
+            }
+        },
+        methods:{
+
+        }
+    })
+</script>  
+
+</body>
+</html>
