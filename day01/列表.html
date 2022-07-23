@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="../js/vue.js"></script>
+    <title>Vue 列表</title>
+    <style>
+        *{
+            margin-top: 10px;
+            font-size: 20px;
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+
+<h1>List列表</h1>
+<hr>
+
+<div id="test">
+    <h3>列表(List)遍历</h3>
+    <ul>
+        <li v-for="(person,index) in persons" :key="index">
+            {{person.id}} - {{person.name}} - {{index}}
+        </li>
+    </ul>
+</div>
+
+<hr>
+
+<div id="find">
+    <h3>列表过滤(搜索)</h3>
+    <input type="text" placeholder="name here..."  v-model="name">
+    <ul>
+        <li v-for="(p,index) in exPersons" :key="index">
+            {{p.id}} - {{p.name}}
+        </li>
+    </ul>
+
+</div>
+
+<script type="text/javascript" >
+    Vue.config.productionTip = false // 阻止警告提示
+
+    let findVue = new Vue({
+        el:'#find',
+        data:{
+            name:'',
+            persons:[
+                {id:'000', name:'Rei'},
+                {id:'001', name:'Shinji'},
+                {id:'002', name:'Asuka'},
+                {id:'003', name:'Yui'}
+            ],
+            exPersons:[],
+        },
+        method:{
+        },
+        watch:{
+            name:{
+                immediate:true,
+                handler(oldName,newName){
+                    console.log("> "+newName)
+                    this.exPersons = this.persons.filter((p)=>{
+                    return p.name.indexOf(this.name)!== -1
+                    })
+                }
+            }
+        }
+    })
+
+    let testVue = new Vue({
+        el:'#test',
+        data:{
+            persons:[
+                {id:'000', name:'Rei'},
+                {id:'001', name:'Shinji'},
+                {id:'002', name:'Asuka'}
+            ]
+        }
+    })
+</script>  
+
+</body>
+</html>

@@ -5,7 +5,7 @@
         <script src="../js/vue.js"></script>
         <title>Vue 样式</title>
         <style>
-            .{
+            *{
                 margin-top: 20px;
             }
             .basic{
@@ -40,8 +40,20 @@
     <span>Area3</span>
 </div>
 
+<div id="cancanneed" v-show="display" @click="display=false">
+    <h3>条件渲染</h3>
+</div>
+
 <script type="text/javascript" >
     Vue.config.productionTip = false // 阻止警告提示
+
+    let canVue = new Vue({
+        el:'#cancanneed',
+        data:{
+            display:true
+        }
+    
+    })
 
     let hotVue = new Vue({
         el:'#hot',
