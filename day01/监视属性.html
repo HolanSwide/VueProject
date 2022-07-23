@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="../js/vue.js"></script>
+<title>Vue 计算属性</title>
+
+<style>
+    *{
+        margin-top: 20px;
+        background-color: bisque;
+    }
+</style>
+
+</head>
+<body>
+
+<h1>Vue监视属性</h1>
+
+<hr>
+
+<div>
+    <p>监视属性</p>
+    <br>
+    <span>
+
+    </span>
+</div>
+
+<div id="test">
+    <h2>灯{{light}}了</h2>
+    <input type="button" value="开关" @click="turnLight"> <br>
+    <img src="D:/eva.jpg" width="30%" height="30%"/>
+</div>
+
+<hr>
+
+<div id="counter">
+    <h2>a = {{num.a}}</h2>
+    <input type="button" value="a++" @click="num.a++"><br>
+    <h2>b = {{num.b}}</h2>
+    <input type="button" value="b++" @click="num.b++"><br>
+</div>
+
+<script type="text/javascript" >
+    Vue.config.productionTip = false // 阻止警告提示
+
+    let counterVue = new Vue({
+        el:'#counter',
+        data:{
+            num:{
+                a:0,
+                b:0
+            },
+        }
+    })
+
+    counterVue.$watch('num',{
+        deep:true,
+        handler() {
+            console.log('num changed...')
+        }
+    })
+
+    let testVue = new Vue({
+        el:'#test',
+        data:{
+            isOn:true,
+            light:'亮',
+        },
+        methods:{
+            turnLight(){
+                this.isOn = !this.isOn
+            }
+        },
+        watch:{
+            deep:true,
+            isOn(newValue,oldValue) {
+                    console.log(oldValue+'->'+newValue)
+                    this.light = newValue == true ? '亮' : '关'
+                }
+            
+        }
+    })
+</script>  
+
+</body>
+</html>
